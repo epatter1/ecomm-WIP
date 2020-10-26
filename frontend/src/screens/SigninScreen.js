@@ -2,21 +2,25 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { signin } from "../actions/userActions";
+import LoadingBox from "../components/LoadingBox";
+import MessageBox from "../components/MessageBox";
 
 export default function SigninScreen(props) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  {/* if exists, split string on '=' and get the 2nd value
+  {
+    /* if exists, split string on '=' and get the 2nd value
       otherwise redirect to home screen
       -- props is the param of signin string
-    */}
+    */
+  }
   const redirect = props.location.search
-    ? props.location.search.split('=')[1]
-    : '/';
+    ? props.location.search.split("=")[1]
+    : "/";
 
   const userSignIn = useSelector((state) => state.userSignIn);
-  const { userInfo } = userSignIn;
+  const { userInfo, loading, error } = userSignIn;
 
   const dispatch = useDispatch();
   const submitHandler = (e) => {
@@ -24,10 +28,12 @@ export default function SigninScreen(props) {
     dispatch(signin(email, password));
   };
 
-  {/* if the userInfo has a value, then login was successful
-      so the user will be redirected to the 'redirect' variable */}
+  {
+    /* if the userInfo has a value, then login was successful
+      so the user will be redirected to the 'redirect' variable */
+  }
   useEffect(() => {
-    if(userInfo) {
+    if (userInfo) {
       props.history.push(redirect);
     }
   }, [props.history, redirect, userInfo]);
@@ -37,6 +43,9 @@ export default function SigninScreen(props) {
         <div>
           <h1>Sign In</h1>
         </div>
+        {/* display signin error message on screen */}
+        {loading && <LoadingBox></LoadingBox>}
+        {error && <MessageBox variant="danger">{error}</MessageBox>}
         <div>
           <label htmlFor="email">Email Address</label>
           <input
@@ -65,7 +74,10 @@ export default function SigninScreen(props) {
           <div>
             <label />
             <div>
-              New Customer? <Link to="/register">Create your account</Link>
+              New Customer?{" "}
+              <Link to={`/register?redirect=${redirect}`}>
+                Create your account
+              </Link>
             </div>
           </div>
         </div>

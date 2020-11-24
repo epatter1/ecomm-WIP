@@ -82,7 +82,7 @@ export default function RegisterScreen(props) {
           ></input>
         </div>
         <div>
-          <label htmlFor="password">Confirm password</label>
+          <label htmlFor="confirmPassword">Confirm password</label>
           <input
             type="password"
             id="confirmPassword"
@@ -97,6 +97,7 @@ export default function RegisterScreen(props) {
             Register
           </button>
           <div>
+            <br />
             <label />
             <div>
              Already have an account? <Link to={`/signin?redirect=${redirect}`}>Sign-In</Link>

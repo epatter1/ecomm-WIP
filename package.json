@@ -5,6 +5,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "build": "cd frontend && npm install && npm run build",
     "start": "nodemon --watch backend --exec node --experimental-modules backend/server.js"
   },
   "author": "",
@@ -17,11 +18,17 @@
     "find-process": "^1.4.4",
     "grep": "^0.1.0",
     "jsonwebtoken": "^8.5.1",
-    "mongoose": "^5.10.9"
+    "mongoose": "^5.10.9",
+    "multer": "^1.4.2",
+    "react-paypal-button-v2": "^2.6.2"
   },
   "devDependencies": {
     "eslint": "^7.11.0",
     "eslint-plugin-react": "^7.21.5",
     "nodemon": "^2.0.6"
+  },
+  "engines": {
+    "node": "12.4.0",
+    "npm": "6.9.0"
   }
 }

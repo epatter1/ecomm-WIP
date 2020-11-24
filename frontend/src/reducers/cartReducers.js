@@ -58,7 +58,7 @@ export const cartReducer = (state = { cartItems: [] }, action) => {
     case CART_SAVE_PAYMENT_METHOD:
       return { ...state, paymentMethod: action.payload };
     
-      /* return empty array */
+      /* return previous statu plus empty array */
     case CART_EMPTY:
       return { ...state, cartItems: [] };
     default:
